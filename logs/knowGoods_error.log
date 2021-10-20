@@ -1,0 +1,1 @@
+ERROR 2021-10-16 15:43:02,803 serializers 327 多次购买写入数据库出现错误，错误原因是:'Logger' object has no attribute 'console'

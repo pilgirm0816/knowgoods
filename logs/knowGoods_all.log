@@ -1,0 +1,11 @@
+ERROR 2021-10-16 15:43:02,803 serializers 327 多次购买写入数据库出现错误，错误原因是:'Logger' object has no attribute 'console'
+WARNING 2021-10-16 16:31:55,374 serializers 325 用户:o407j4hdGv7JCSBGTDmupyKLlY2w,预购买了商品id与数量:{<productgoods: productgoods object (4543759010335031297)>: 2, <productgoods: productgoods object (4541968687606792193)>: 2},收货地址是address object (7)
+WARNING 2021-10-16 16:42:01,744 serializers 325 用户:o407j4hdGv7JCSBGTDmupyKLlY2w,预购买了商品id与数量:{<productgoods: productgoods object (4543759010335031297)>: 2, <productgoods: productgoods object (4541968687606792193)>: 2},收货地址是address object (7)
+WARNING 2021-10-16 16:43:55,914 serializers 325 用户:o407j4hdGv7JCSBGTDmupyKLlY2w,预购买了商品id与数量:{<productgoods: productgoods object (4543759010335031297)>: 2, <productgoods: productgoods object (4541968687606792193)>: 3},收货地址是address object (7)
+WARNING 2021-10-16 17:02:04,193 serializers 325 用户:o407j4hdGv7JCSBGTDmupyKLlY2w,预购买了商品id与数量:{<productgoods: productgoods object (4543759010335031297)>: 2, <productgoods: productgoods object (4541968687606792193)>: 2},收货地址是address object (7)
+WARNING 2021-10-16 17:03:47,506 serializers 325 用户:o407j4hdGv7JCSBGTDmupyKLlY2w,预购买了商品id与数量:{<productgoods: productgoods object (4543759010335031297)>: 2, <productgoods: productgoods object (4541968687606792193)>: 2},收货地址是address object (7)
+WARNING 2021-10-16 17:05:14,053 serializers 325 用户:o407j4hdGv7JCSBGTDmupyKLlY2w,预购买了商品id与数量:{<productgoods: productgoods object (4543759010335031297)>: 2, <productgoods: productgoods object (4541968687606792193)>: 2},收货地址是address object (7)
+WARNING 2021-10-16 17:08:29,860 serializers 325 用户:o407j4hdGv7JCSBGTDmupyKLlY2w,预购买了商品id与数量:{<productgoods: productgoods object (4543759010335031297)>: 2, <productgoods: productgoods object (4541968687606792193)>: 2},收货地址是address object (7)
+WARNING 2021-10-16 17:13:07,869 serializers 195 用户:o407j4hdGv7JCSBGTDmupyKLlY2w,已将商品(id):productgoods object (4543764872671789057),添加至购物车,添加数量为3
+WARNING 2021-10-16 17:13:12,826 serializers 341 用户:o407j4hdGv7JCSBGTDmupyKLlY2w,预购买了商品id与数量:{<productgoods: productgoods object (4543764872671789057)>: 3},收货地址是:address object (7)
+WARNING 2021-10-20 09:44:43,769 serializers 340 用户:o407j4hdGv7JCSBGTDmupyKLlY2w,预购买了商品id与数量:{<productgoods: productgoods object (4543782628783816705)>: 1},收货地址是:address object (7)
