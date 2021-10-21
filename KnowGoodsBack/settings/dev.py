@@ -72,7 +72,7 @@ WSGI_APPLICATION = 'KnowGoodsBack.wsgi.application'
 
 # 采用mysql数据库
 # 数据库密码存放在环境变量中
-PASSWORD = os.environ.get('PASSWORD')
+PASSWORD = os.environ.get('PASSWORD',)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',

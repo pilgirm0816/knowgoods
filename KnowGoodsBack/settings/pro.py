@@ -116,7 +116,7 @@ AUTH_USER_MODEL ='backstage.UserInfo'
 
 STATIC_URL = '/static/'
 # 使用simple将静态文件复制到static下
-# STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
+# STATIC_ROOT = '/home/konwgoods/knowgoods/static'
 STATICFILES_DIRS = [
      os.path.join(os.path.dirname(BASE_DIR), "static"),
  ]

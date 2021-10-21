@@ -143,7 +143,7 @@ class Rt_pecialbenefits(APIView):
         productgoodsPage = page.productgoodsPageNumber()
         res = productgoodsPage.paginate_queryset(all_productgoods, request, self)
         serializer = serializers.PecialbenefitsModelSerializer(instance=res, many=True)
-        # 修改了get_paginated_response的源码
+        # 继承了PageNumberPagination重写了get_paginated_response
         return productgoodsPage.get_paginated_response(serializer.data)
 
 
@@ -358,10 +358,10 @@ def Get_Pay_success(request):
     return render(request, 'pay_success.html', locals())
 
 from django_filters.rest_framework.backends import DjangoFilterBackend
-class Order_listViewSet(GenericViewSet,ListModelMixin):
+class Order_listViewSet(GenericViewSet,page.CustomListModelMixin):
     """
     用户订单列表
-    此处修改了ListModelMixin的源码:return Response(serializer.data) => return Response(data)
+    此处继承了自定义的CustomListModelMixin类:CustomListModelMixin重写了list方法
     """
     queryset = models.order.objects.all()
     authentication_classes = [Applet_CUSTOMWebTokenAuthentication]
