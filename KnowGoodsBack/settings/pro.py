@@ -76,7 +76,7 @@ PASSWORD = os.environ.get('PASSWORD','Zbin1234?')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'knowgood',
+        'NAME': 'knowgoods ',
         'USER': 'root',
         'PASSWORD': 'Zbin1234?',
         'HOST': '127.0.0.1',
