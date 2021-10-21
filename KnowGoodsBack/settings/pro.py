@@ -231,7 +231,7 @@ JWT_AUTH = {
 # 同步回调的接口(get)，前后台分离时一般设置前台页面url
 RETURN_URL = 'http://8.130.49.128:8000/applet/v1/api/pay/success/'
 # 异步回调的接口(post)，一定设置为后台服务器接口
-NOTIFY_URL = 'http://8.130.49.128:8000/order/success/'
+NOTIFY_URL = 'http://8.130.49.128:8000/applet/v1/api/order/success/'
 
 
 REST_FRAMEWORK = {

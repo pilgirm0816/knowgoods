@@ -19,6 +19,7 @@ urlpatterns = [
     path('mine/address/', views.Save_address.as_view()),
     path('addcartgood/', views.AddCartGoodView.as_view()),
     path('delcartgood/', views.DelCartGoodView.as_view()),
+    path('order/success/', views.Post_Pay_success),
     path('pay/success/', views.Get_Pay_success),
 
 ]
