@@ -6,7 +6,13 @@ backend = 'redis://127.0.0.1:6379/10'  # 任务结果缓存库
 # 类似于在在其他非django内部的py文件中使用django，或者是app中的test文件引入一样
 import os
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "KnowGoodsBack.settings.dev")
+# 通过在服务器中添加环境变量中的值来区别到底是使用dev还是pro
+identify = os.environ.get('WAY')
+if identify == 1:
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "KnowGoodsBack.settings.pro")
+else:
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "KnowGoodsBack.settings.dev")
+
 
 app = Celery(__name__, broker=broker, backend=backend, include=[
     'celery_task.home_task',

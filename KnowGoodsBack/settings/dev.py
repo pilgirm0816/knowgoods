@@ -30,7 +30,8 @@ INSTALLED_APPS = [
     'applet',
     'backstage',
     'rest_framework',
-    'django_filters'
+    'django_filters',
+    'rest_framework_swagger'
 
 ]
 

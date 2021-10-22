@@ -77,11 +77,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'knowgoods',
-        # 'USER': 'root',
         'USER': 'knowgoods',
         'PASSWORD': 'Zbin1234?',
-        # 'PASSWORD': 'Zbin1234?',
-        # 'HOST': '127.0.0.1',
         'HOST': '8.130.49.128',
         'PORT': '3306',
         'CHARSET': 'utf8'
