@@ -207,11 +207,11 @@ class order(admin.ModelAdmin):
         'oredr_detail','is_delete'
     )
     list_display_links = ('order_id',)
-    list_filter = ('productgoods', 'user', 'order_status','is_delete')
+    list_filter = ('productgoods', 'user', 'order_status','pay_price','is_delete','order_createtime','order_paytime')
     list_editable = ('order_title',)
     list_per_page = 10
     # 按发布日期降序排序
-    ordering = ('order_id',)
+    ordering = ('-order_createtime',)
     # 搜索条件设置
     search_fields = ('id','order_title')
 

@@ -51,6 +51,8 @@ class navar(models.Model):
         verbose_name = '首页导航栏'
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return self.navar_name
 
 class slideshow(models.Model):
     """
@@ -65,6 +67,8 @@ class slideshow(models.Model):
         verbose_name = '首页轮播图'
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return self.banner_name
 
 class productsale(models.Model):
     """
@@ -79,6 +83,8 @@ class productsale(models.Model):
         verbose_name = '新品特卖'
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return self.name
 
 class productgoods(models.Model):
     """
@@ -121,6 +127,8 @@ class productgoods(models.Model):
     def goods_type_name(self):
         return self.get_goods_type_display()
 
+    def __str__(self):
+        return self.id
 class productgoodsdetail(models.Model):
     """
     商品详情信息
@@ -133,6 +141,8 @@ class productgoodsdetail(models.Model):
         verbose_name = '商品详情'
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return self.title
 
 class productgoodsdetail_slideshow(models.Model):
     """
@@ -145,6 +155,8 @@ class productgoodsdetail_slideshow(models.Model):
         verbose_name = '详情页轮播图片'
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return self.productgoods
 
 class productgoodsdetail_img(models.Model):
     """
@@ -157,6 +169,8 @@ class productgoodsdetail_img(models.Model):
         verbose_name = '详情页详情图片'
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return self.productgoods
 
 class good_category(models.Model):
     """
@@ -168,19 +182,23 @@ class good_category(models.Model):
         verbose_name = '主分类'
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return self.name
 
 class good_categorychild(models.Model):
     """
     商品分类小表
     """
-    name = models.CharField(max_length=16, verbose_name='商品子分类名称')
+    name = models.CharField(max_length=16, verbose_name='子分类名称')
     img_url = models.CharField(max_length=256, verbose_name='图片地址', null=True)
-    category = models.ForeignKey(to=good_category, on_delete=models.DO_NOTHING, null=True, db_constraint=False,verbose_name='主分类id')
+    category = models.ForeignKey(to=good_category, on_delete=models.DO_NOTHING, null=True, db_constraint=False,verbose_name='主分类名称')
 
     class Meta:
         verbose_name = '子分类'
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return self.name
 
 class goodcart(models.Model):
     """
@@ -190,10 +208,13 @@ class goodcart(models.Model):
                                     verbose_name='关联商品id')
     productgood_num = models.CharField(max_length=10, verbose_name='添加到购物车的商品数量')
     user = models.ForeignKey(user, on_delete=models.DO_NOTHING, verbose_name='关联用户id')
-    goodtocart_time = models.DateTimeField(auto_now_add=True, verbose_name='添加的时间')
+    goodtocart_time = models.DateTimeField(auto_now_add=True, verbose_name='添加时间')
     class Meta:
         verbose_name = '用户购物车'
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.productgood
 
 from django.utils.html import format_html
 class order(models.Model):
@@ -248,6 +269,9 @@ class order(models.Model):
         verbose_name = '订单列表'
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return self.order_id
+
 
 class order_detail(models.Model):
     """
@@ -271,6 +295,9 @@ class order_detail(models.Model):
     def logistics_company_name(self):
         return self.get_logistics_company_display()
 
+    def __str__(self):
+        return self.id
+
 class address(models.Model):
     """
     用户地址表
@@ -285,3 +312,6 @@ class address(models.Model):
     class Meta:
         verbose_name = '用户地址'
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.consignee

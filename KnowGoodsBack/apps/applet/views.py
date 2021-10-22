@@ -139,13 +139,21 @@ class Rt_pecialbenefits(APIView):
 
     def get(self, request):
         # 反转queryset对象
-        all_productgoods = models.productgoods.objects.filter(is_putaway=True).all()[::-1]
-        productgoodsPage = page.productgoodsPageNumber()
-        res = productgoodsPage.paginate_queryset(all_productgoods, request, self)
-        serializer = serializers.PecialbenefitsModelSerializer(instance=res, many=True)
-        # 继承了PageNumberPagination重写了get_paginated_response
-        return productgoodsPage.get_paginated_response(serializer.data)
-
+        cache_productgoods = cache.get('福利专场缓存')
+        if not cache_productgoods:
+            all_productgoods = models.productgoods.objects.filter(is_putaway=True).all()[::-1]
+            cache.set('福利专场缓存', all_productgoods)
+            productgoodsPage = page.productgoodsPageNumber()
+            res = productgoodsPage.paginate_queryset(all_productgoods, request, self)
+            serializer = serializers.PecialbenefitsModelSerializer(instance=res, many=True)
+            # 继承了PageNumberPagination重写了get_paginated_response
+            return productgoodsPage.get_paginated_response(serializer.data)
+        else:
+            productgoodsPage = page.productgoodsPageNumber()
+            res = productgoodsPage.paginate_queryset(cache_productgoods, request, self)
+            serializer = serializers.PecialbenefitsModelSerializer(instance=res, many=True)
+            # 继承了PageNumberPagination重写了get_paginated_response
+            return productgoodsPage.get_paginated_response(serializer.data)
 
 class Rt_gooddetail(ViewSet):
     """
@@ -243,7 +251,7 @@ class Save_address(APIView):
 
 
 from utils.custom_check_jwt_authenticate import Applet_CUSTOMWebTokenAuthentication
-from rest_framework.mixins import CreateModelMixin,ListModelMixin
+from rest_framework.mixins import CreateModelMixin
 from rest_framework.generics import CreateAPIView, DestroyAPIView
 from utils.knowGoods_logging import get_logger
 from rest_framework.response import Response
@@ -325,7 +333,7 @@ import datetime
 def Post_Pay_success(request):
     # 支付宝post回调，内网测不了
     try:
-        result_data = request.data.dict()
+        result_data = request.POST.dict()
         # 订单号，我们给的
         out_trade_no = result_data.get('out_trade_no')
         trade_no = result_data.get('trade_no')
@@ -349,6 +357,8 @@ def Post_Pay_success(request):
 
 
 from django.shortcuts import render
+
+
 def Get_Pay_success(request):
     """
     支付完成后的get回调函数
@@ -357,8 +367,11 @@ def Get_Pay_success(request):
     total_amount = request.GET.get('total_amount')
     return render(request, 'pay_success.html', locals())
 
+
 from django_filters.rest_framework.backends import DjangoFilterBackend
-class Order_listViewSet(GenericViewSet,page.CustomListModelMixin):
+
+
+class Order_listViewSet(GenericViewSet, page.CustomListModelMixin):
     """
     用户订单列表
     此处继承了自定义的CustomListModelMixin类:CustomListModelMixin重写了list方法
@@ -366,6 +379,5 @@ class Order_listViewSet(GenericViewSet,page.CustomListModelMixin):
     queryset = models.order.objects.all()
     authentication_classes = [Applet_CUSTOMWebTokenAuthentication]
     serializer_class = serializers.OrderlistModelSerializer
-    filter_backends = [DjangoFilterBackend,]
-    filter_fields = ['order_status','order_title']
-
+    filter_backends = [DjangoFilterBackend, ]
+    filter_fields = ['order_status', 'order_title']

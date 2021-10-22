@@ -9,3 +9,4 @@ WARNING 2021-10-16 17:08:29,860 serializers 325 用户:o407j4hdGv7JCSBGTDmupyKLl
 WARNING 2021-10-16 17:13:07,869 serializers 195 用户:o407j4hdGv7JCSBGTDmupyKLlY2w,已将商品(id):productgoods object (4543764872671789057),添加至购物车,添加数量为3
 WARNING 2021-10-16 17:13:12,826 serializers 341 用户:o407j4hdGv7JCSBGTDmupyKLlY2w,预购买了商品id与数量:{<productgoods: productgoods object (4543764872671789057)>: 3},收货地址是:address object (7)
 WARNING 2021-10-20 09:44:43,769 serializers 340 用户:o407j4hdGv7JCSBGTDmupyKLlY2w,预购买了商品id与数量:{<productgoods: productgoods object (4543782628783816705)>: 1},收货地址是:address object (7)
+WARNING 2021-10-22 10:54:00,079 serializers 340 用户:o407j4hdGv7JCSBGTDmupyKLlY2w,预购买了商品id与数量:{<productgoods: productgoods object (4543789853367599105)>: 1},收货地址是:address object (7)

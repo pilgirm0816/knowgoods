@@ -33,9 +33,9 @@ SIMPLEUI_DEFAULT_THEME = 'simpleui.css'
 
 # 网站logo
 # 线上
-# SIMPLEUI_LOGO = 'http://8.130.49.128:8000/logo/logo.png'
+SIMPLEUI_LOGO = 'http://8.130.49.128:8000/logo/logo.png'
 # 本地
-SIMPLEUI_LOGO = 'http://127.0.0.1:8000/logo/logo.png'
+# SIMPLEUI_LOGO = 'http://127.0.0.1:8000/logo/logo.png'
 
 # 隐藏右侧SimpleUI广告链接和使用分析
 SIMPLEUI_HOME_INFO = False
@@ -47,7 +47,7 @@ SIMPLEUI_HOME_ACTION = False
 
 # 修改首页设置, 指向新创建的首页
 # 线上
-# SIMPLEUI_HOME_PAGE = 'http://8.130.49.128:8000/backstage/v1/api/home/'
+SIMPLEUI_HOME_PAGE = 'http://8.130.49.128:8000/backstage/v1/api/home/'
 # 本地
-SIMPLEUI_HOME_PAGE = 'http://127.0.0.1:8000/backstage/v1/api/home/'
+# SIMPLEUI_HOME_PAGE = 'http://127.0.0.1:8000/backstage/v1/api/home/'
 SIMPLEUI_HOME_TITLE = '首页'
