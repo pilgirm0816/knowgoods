@@ -128,7 +128,7 @@ class productgoods(models.Model):
         return self.get_goods_type_display()
 
     def __str__(self):
-        return self.id
+        return self.name # 改动过
 class productgoodsdetail(models.Model):
     """
     商品详情信息
@@ -156,7 +156,7 @@ class productgoodsdetail_slideshow(models.Model):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return self.productgoods
+        return str(self.productgoods.name)# 改动过
 
 class productgoodsdetail_img(models.Model):
     """
@@ -170,7 +170,7 @@ class productgoodsdetail_img(models.Model):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return self.productgoods
+        return str(self.productgoods.name) # 改动过
 
 class good_category(models.Model):
     """
@@ -205,16 +205,16 @@ class goodcart(models.Model):
     商品被添加到购物车表
     """
     productgood = models.ForeignKey(productgoods, related_name='goodcart', on_delete=models.DO_NOTHING,
-                                    verbose_name='关联商品id')
+                                    verbose_name='关联商品')
     productgood_num = models.CharField(max_length=10, verbose_name='添加到购物车的商品数量')
     user = models.ForeignKey(user, on_delete=models.DO_NOTHING, verbose_name='关联用户id')
     goodtocart_time = models.DateTimeField(auto_now_add=True, verbose_name='添加时间')
     class Meta:
-        verbose_name = '用户购物车'
+        verbose_name = '购物车'
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return self.productgood
+        return str(self.productgood.name) # 改动过
 
 from django.utils.html import format_html
 class order(models.Model):
@@ -256,14 +256,6 @@ class order(models.Model):
     def order_status_name(self):
         return self.get_order_status_display()
 
-    # def colored_name(self):
-    #     if self.order_status == '待付款':
-    #         cl_name = 'red'
-    #     return format_html(
-    #         '<span style="color: {};">{}</span>',
-    #         cl_name,
-    #         self.order_status,
-    #     )
 
     class Meta:
         verbose_name = '订单列表'
@@ -296,7 +288,7 @@ class order_detail(models.Model):
         return self.get_logistics_company_display()
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
 class address(models.Model):
     """

@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     'backstage',
     'rest_framework',
     'django_filters',
-    'rest_framework_swagger'
+    'coreapi'
 
 ]
 

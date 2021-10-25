@@ -377,7 +377,7 @@ class Order_listViewSet(GenericViewSet, page.CustomListModelMixin):
     此处继承了自定义的CustomListModelMixin类:CustomListModelMixin重写了list方法
     """
     queryset = models.order.objects.all()
-    authentication_classes = [Applet_CUSTOMWebTokenAuthentication]
+    # authentication_classes = [Applet_CUSTOMWebTokenAuthentication]
     serializer_class = serializers.OrderlistModelSerializer
     filter_backends = [DjangoFilterBackend, ]
     filter_fields = ['order_status', 'order_title']

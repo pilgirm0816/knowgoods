@@ -1,15 +1,15 @@
 from .celery import app
 from applet import models,serializers
 from django.conf import settings
-from django_redis import get_redis_connection
+
+from django.core.cache import cache
 # 定时更新轮播图函数
 @app.task()
 def update_banner():
     queryset = models.slideshow.objects.all()[:settings.BANNER_NUMBER]
     serializer = serializers.BannersModelSerializer(instance=queryset,many=True)
     cache_data = serializer.data
-    conn = get_redis_connection()
-    conn.hset('轮播图图片缓存', 'Banners', cache_data)
+    cache.set('轮播图图片缓存', cache_data)
     return True
 
 
@@ -19,8 +19,7 @@ def update_productsale():
     queryset = models.productsale.objects.all()[:settings.PRODUCTSALE_NUMBER]
     serializer = serializers.ProductsaleModelSerializer(instance=queryset, many=True)
     cache_data = serializer.data
-    conn = get_redis_connection()
-    conn.hset('新品特卖图片缓存', 'Productsale', cache_data)
+    cache.set('新品特卖图片缓存', cache_data)
     return True
 
 
@@ -28,8 +27,7 @@ def update_productsale():
 @app.task()
 def update_pecialbenefits():
     all_productgoods = models.productgoods.objects.filter(is_putaway=True).all()[::-1]
-    conn = get_redis_connection()
-    conn.hset('福利专场缓存', 'pecialbenefits', all_productgoods)
+    cache.set('福利专场缓存', all_productgoods)
     return True
 
 # 定时任务（查询出数据库中所有付款后的商品在每六个小时之后，将待发货改为已发货同时生成订单详情，模拟物流）

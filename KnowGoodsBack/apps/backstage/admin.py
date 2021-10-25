@@ -21,6 +21,7 @@ class user(admin.ModelAdmin):
     list_display_links = ('user_openid',)
     # 每页显示条目数 缺省值100
     list_per_page = 10
+    readonly_fields = ('user_openid',)
     # 设置过滤选项
     list_filter = ('user_openid','sex','province','user_level','user_isactive')
     # 按发布日期降序排序
@@ -78,7 +79,14 @@ class productsale(admin.ModelAdmin):
 class productgoods(admin.ModelAdmin):
     """
     后台productgoods展示表
+    继承ModelAdmin重写save_model方法
+    snowflake_start_server，在8910端口开启服务
     """
+    def save_model(self, request, obj, form, change):
+        from utils.utils_app.snow_flake import get_snowflake_uuid
+        res_id = get_snowflake_uuid()
+        obj.id = str(res_id)
+        super().save_model(request, obj, form, change)
     # 设置页面可以展示的字段
     list_display =(
         'id','name','price','privilegePrice','discount','create_time',
@@ -88,6 +96,7 @@ class productgoods(admin.ModelAdmin):
     # 设置过滤选项
     list_filter = ('name','price','goods_type','is_putaway')
     list_per_page = 10
+    readonly_fields=('id',)
     list_editable = ('name','price','privilegePrice','discount','goods_type','is_putaway')
     # 按发布日期降序排序
     ordering = ('-create_time',)
@@ -251,6 +260,7 @@ class address(admin.ModelAdmin):
 
 
 from . import models
+
 @admin.register(models.UserInfo)
 class UserInfo(admin.ModelAdmin):
     """
