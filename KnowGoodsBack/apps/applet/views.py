@@ -376,8 +376,12 @@ class Order_listViewSet(GenericViewSet, page.CustomListModelMixin):
     用户订单列表
     此处继承了自定义的CustomListModelMixin类:CustomListModelMixin重写了list方法
     """
-    queryset = models.order.objects.all()
-    # authentication_classes = [Applet_CUSTOMWebTokenAuthentication]
+    # queryset = models.order.objects.all()
+    authentication_classes = [Applet_CUSTOMWebTokenAuthentication]
+    def get_queryset(self):
+        user_id = self.request.META.get('HTTP_OPENID')
+        return models.order.objects.filter(user_id=user_id).all()
+
     serializer_class = serializers.OrderlistModelSerializer
     filter_backends = [DjangoFilterBackend, ]
     filter_fields = ['order_status', 'order_title']
